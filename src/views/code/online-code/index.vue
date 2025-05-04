@@ -187,7 +187,7 @@ export default {
           { required: true, message: '服务名不能为空', trigger: 'blur' }
         ],
         clientCode: [
-          { required: true, message: '应用不能为空', trigger: 'blur' }
+          { required: false, message: '应用不能为空', trigger: 'blur' }
         ]
       }
     }
