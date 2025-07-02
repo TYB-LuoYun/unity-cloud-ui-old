@@ -33,13 +33,26 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
+    host: '0.0.0.0',
     port: port,
     open: true,
-    overlay: {
-      warnings: false,
-      errors: true
+    proxy: {
+      '/api/auth': {
+        target: 'http://localhost:7825',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/auth': '/ucpm'
+        }
+      },
+      '/api/ucpm': {
+        target: 'http://localhost:7825',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/ucpm': '/ucpm'
+        }
+      }
     },
-    before: null
+    disableHostCheck: true
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
